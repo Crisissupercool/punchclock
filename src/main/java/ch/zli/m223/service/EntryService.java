@@ -7,6 +7,7 @@ import ch.zli.m223.repository.EmployeeRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+
 import java.util.List;
 
 @ApplicationScoped
@@ -27,6 +28,27 @@ public class EntryService {
     }
 
     @Transactional
+    public void deleteEntry(Long id) {
+        Entry entry = entryRepository.findById(id);
+        if (entry != null) {
+            entryRepository.delete(entry);
+        }
+    }
+
+    @Transactional
+    public Entry updateEntry(Long id, Entry updatedEntry) {
+        Entry entry = entryRepository.findById(id);
+        if (entry == null) {
+            return null;
+        }
+
+        entry.setCheckIn(updatedEntry.getCheckIn());
+        entry.setCheckOut(updatedEntry.getCheckOut());
+        entry.setEmployee(updatedEntry.getEmployee());
+        return entry; // Panache updated automatically inside the transaction
+    }
+
+    @Transactional
     public Entry createEntry(Entry entry) {
         if (entry.getEmployee() != null && entry.getEmployee().getId() != null) {
             Employee employee = employeeRepository.findById(entry.getEmployee().getId());
@@ -39,4 +61,3 @@ public class EntryService {
         return entry;
     }
 }
-

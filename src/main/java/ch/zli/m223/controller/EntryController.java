@@ -40,5 +40,21 @@ public class EntryController {
             return Response.status(Response.Status.BAD_REQUEST).entity(e.getMessage()).build();
         }
     }
-}
 
+    @PUT
+    @Path("/{id}")
+    public Response updateEntry(@PathParam("id") Long id, Entry updatedEntry) {
+        Entry entry = entryService.updateEntry(id, updatedEntry);
+        if (entry == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        return Response.ok(entry).build();
+    }
+
+    @DELETE
+    @Path("/{id}")
+    public Response deleteEntry(@PathParam("id") Long id) {
+        entryService.deleteEntry(id);
+        return Response.noContent().build();
+    }
+}

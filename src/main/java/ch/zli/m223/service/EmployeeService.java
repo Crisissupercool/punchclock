@@ -26,5 +26,34 @@ public class EmployeeService {
         employeeRepository.persist(employee);
         return employee;
     }
-}
 
+    // ---------------------------
+    // Fehlende Methoden hinzufügen
+    // ---------------------------
+
+    @Transactional
+    public void deleteEmployee(Long id) {
+        Employee employee = employeeRepository.findById(id);
+        if (employee != null) {
+            employeeRepository.delete(employee);
+        }
+    }
+
+    @Transactional
+    public Employee updateEmployee(Long id, Employee updatedEmployee) {
+        Employee employee = employeeRepository.findById(id);
+
+        if (employee == null) {
+            return null;
+        }
+
+        // Felder updaten
+        employee.setFirstName(updatedEmployee.getFirstName());
+        employee.setLastName(updatedEmployee.getLastName());
+        employee.setEmail(updatedEmployee.getEmail());
+        // weitere Felder falls vorhanden …
+
+        employeeRepository.persist(employee);
+        return employee;
+    }
+}
