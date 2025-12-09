@@ -45,6 +45,8 @@ public class EntryService {
         entry.setCheckIn(updatedEntry.getCheckIn());
         entry.setCheckOut(updatedEntry.getCheckOut());
         entry.setEmployee(updatedEntry.getEmployee());
+        entry.setCategory(updatedEntry.getCategory());
+        entry.setTags(updatedEntry.getTags());
         return entry; // Panache updated automatically inside the transaction
     }
 
