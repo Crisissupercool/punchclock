@@ -1,6 +1,6 @@
 package ch.zli.m223.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -15,8 +15,8 @@ public class Category {
     @Column(nullable = false)
     private String title;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Entry> entries;
 
     public Category() {
