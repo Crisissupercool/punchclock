@@ -1,5 +1,6 @@
 package ch.zli.m223.service;
 
+import ch.zli.m223.dto.TimeSummaryDTO;
 import ch.zli.m223.model.Entry;
 import ch.zli.m223.model.Employee;
 import ch.zli.m223.repository.EntryRepository;
@@ -19,8 +20,16 @@ public class EntryService {
     @Inject
     EmployeeRepository employeeRepository;
 
+    @Inject
+    TimeSummaryService timeSummaryService;
+
     public List<Entry> findAll() {
         return entryRepository.listAll();
+    }
+
+    public List<TimeSummaryDTO> getTimeSummaries() {
+        List<Entry> allEntries = entryRepository.listAll();
+        return timeSummaryService.calculateSummaryPerDay(allEntries);
     }
 
     public Entry findById(Long id) {

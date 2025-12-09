@@ -347,6 +347,32 @@ DELETE /entries/{id}
 
 ---
 
+### Statistics Endpoints
+
+#### Zeiterfassung pro Tag abrufen
+```http
+GET /statistics/time-summaries
+```
+
+**Response:** `200 OK`
+```json
+{
+  "2024-08-23": "08:00:00",
+  "2024-08-22": "09:15:00",
+  "2024-08-21": "07:45:00",
+  "2024-08-20": "08:30:00"
+}
+```
+
+**Beschreibung:**
+- Gibt eine Zusammenfassung der erfassten Arbeitszeit pro Tag zurück
+- Schlüssel: Datum im Format `YYYY-MM-DD`
+- Wert: Gesamtdauer im Format `HH:mm:ss`
+- Nur abgeschlossene Einträge (mit checkOut) werden berücksichtigt
+- Sortiert nach Datum (neueste zuerst)
+
+---
+
 ### Test Data Endpoints
 
 #### Testdaten laden
