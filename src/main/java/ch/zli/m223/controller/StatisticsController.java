@@ -2,6 +2,7 @@ package ch.zli.m223.controller;
 
 import ch.zli.m223.dto.TimeSummaryDTO;
 import ch.zli.m223.service.EntryService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -14,6 +15,7 @@ import java.util.Map;
 
 @Path("/statistics")
 @Produces(MediaType.APPLICATION_JSON)
+@RolesAllowed({"User", "Admin"})
 public class StatisticsController {
 
     @Inject

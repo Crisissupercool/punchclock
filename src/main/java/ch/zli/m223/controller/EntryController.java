@@ -9,6 +9,7 @@ import ch.zli.m223.service.CategoryService;
 import ch.zli.m223.service.EmployeeService;
 import ch.zli.m223.service.EntryService;
 import ch.zli.m223.service.TagService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @Path("/entries")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@RolesAllowed({"User", "Admin"})
 public class EntryController {
 
     @Inject

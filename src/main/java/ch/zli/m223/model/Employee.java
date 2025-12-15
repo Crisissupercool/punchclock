@@ -25,6 +25,10 @@ public class Employee {
     @JsonIgnore
     private List<Entry> entries;
 
+    @OneToOne(mappedBy = "employee")
+    @JsonIgnore
+    private ApplicationUser applicationUser;
+
     public Employee() {
     }
 
@@ -72,6 +76,14 @@ public class Employee {
 
     public void setEntries(List<Entry> entries) {
         this.entries = entries;
+    }
+
+    public ApplicationUser getApplicationUser() {
+        return applicationUser;
+    }
+
+    public void setApplicationUser(ApplicationUser applicationUser) {
+        this.applicationUser = applicationUser;
     }
 }
 

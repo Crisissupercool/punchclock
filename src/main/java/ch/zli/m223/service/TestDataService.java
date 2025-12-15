@@ -1,9 +1,11 @@
 package ch.zli.m223.service;
 
+import ch.zli.m223.model.ApplicationUser;
 import ch.zli.m223.model.Category;
 import ch.zli.m223.model.Employee;
 import ch.zli.m223.model.Entry;
 import ch.zli.m223.model.Tag;
+import ch.zli.m223.repository.ApplicationUserRepository;
 import ch.zli.m223.repository.CategoryRepository;
 import ch.zli.m223.repository.EmployeeRepository;
 import ch.zli.m223.repository.EntryRepository;
@@ -33,6 +35,12 @@ public class TestDataService {
     @Inject
     EntryRepository entryRepository;
 
+    @Inject
+    ApplicationUserRepository applicationUserRepository;
+
+    @Inject
+    ApplicationUserService applicationUserService;
+
     @Transactional
     public void loadTestData() {
         LOG.info("Loading test data...");
@@ -52,7 +60,23 @@ public class TestDataService {
         employeeRepository.persist(diana);
         LOG.info("Created 4 employees");
 
-        // 2. Create Categories
+        // 2. Create Application Users (with hashed passwords)
+        // Each ApplicationUser needs a unique Employee (OneToOne relationship)
+        ApplicationUser adminUser = new ApplicationUser("admin", "admin123", "Admin");
+        adminUser.setEmployee(alice);
+        adminUser = applicationUserService.createUser(adminUser);
+
+        ApplicationUser userBob = new ApplicationUser("bob", "bob123", "User");
+        userBob.setEmployee(bob);
+        userBob = applicationUserService.createUser(userBob);
+
+        ApplicationUser userCharlie = new ApplicationUser("charlie", "charlie123", "User");
+        userCharlie.setEmployee(charlie);
+        userCharlie = applicationUserService.createUser(userCharlie);
+
+        LOG.info("Created 3 application users (admin/admin123, bob/bob123, charlie/charlie123)");
+
+        // 3. Create Categories
         Category development = new Category("Development");
         Category meeting = new Category("Meeting");
         Category training = new Category("Training");
@@ -170,6 +194,7 @@ public class TestDataService {
     public void clearAllData() {
         LOG.info("Clearing all existing data...");
         entryRepository.deleteAll();
+        applicationUserRepository.deleteAll();
         employeeRepository.deleteAll();
         categoryRepository.deleteAll();
         tagRepository.deleteAll();
