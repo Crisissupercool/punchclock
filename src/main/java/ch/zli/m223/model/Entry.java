@@ -15,9 +15,10 @@ public class Entry {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "checkin", nullable = false)
     private LocalDateTime checkIn;
 
+    @Column(name = "checkout")
     private LocalDateTime checkOut;
 
     @ManyToOne(fetch = FetchType.LAZY)
