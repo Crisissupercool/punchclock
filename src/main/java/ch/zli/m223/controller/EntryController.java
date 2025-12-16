@@ -64,6 +64,7 @@ public class EntryController {
         entry.setCheckIn(entryDTO.getCheckIn());
         entry.setCheckOut(entryDTO.getCheckOut());
         entry.setEmployee(employee);
+        entry.setDescription(entryDTO.getDescription());
 
         if (entryDTO.getCategoryId() != null) {
             Category category = categoryService.findById(entryDTO.getCategoryId());
@@ -102,6 +103,7 @@ public class EntryController {
         updatedEntry.setCheckIn(entryDTO.getCheckIn());
         updatedEntry.setCheckOut(entryDTO.getCheckOut());
         updatedEntry.setEmployee(employee);
+        updatedEntry.setDescription(entryDTO.getDescription());
 
         if (entryDTO.getCategoryId() != null) {
             Category category = categoryService.findById(entryDTO.getCategoryId());
@@ -150,7 +152,8 @@ public class EntryController {
                 entry.getCheckOut(),
                 entry.getEmployee().getId(),
                 entry.getCategory() != null ? entry.getCategory().getId() : null,
-                tagIds
+                tagIds,
+                entry.getDescription()
         );
     }
 }

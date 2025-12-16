@@ -39,6 +39,9 @@ public class Entry {
     @JsonIgnore
     private List<Tag> tags = new ArrayList<>();
 
+    @Column(columnDefinition = "TEXT")
+    private String description;
+
     public Entry() {
     }
 
@@ -93,6 +96,14 @@ public class Entry {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
 

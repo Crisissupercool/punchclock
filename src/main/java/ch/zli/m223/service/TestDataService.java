@@ -116,6 +116,7 @@ public class TestDataService {
         entry1.setEmployee(alice);
         entry1.setCategory(development);
         entry1.setTags(Arrays.asList(remote, project, feature));
+        entry1.setDescription("Implemented new authentication feature for web application");
         entryRepository.persist(entry1);
 
         Entry entry2 = new Entry();
@@ -124,6 +125,7 @@ public class TestDataService {
         entry2.setEmployee(alice);
         entry2.setCategory(development);
         entry2.setTags(Arrays.asList(onsite, bugfix, urgent));
+        entry2.setDescription("Fixed critical bug in payment processing module");
         entryRepository.persist(entry2);
 
         // Bob's entries
@@ -133,6 +135,7 @@ public class TestDataService {
         entry3.setEmployee(bob);
         entry3.setCategory(meeting);
         entry3.setTags(Arrays.asList(remote, project));
+        entry3.setDescription("Sprint planning meeting with product team");
         entryRepository.persist(entry3);
 
         Entry entry4 = new Entry();
@@ -141,6 +144,7 @@ public class TestDataService {
         entry4.setEmployee(bob);
         entry4.setCategory(development);
         entry4.setTags(Arrays.asList(onsite, overtime, urgent));
+        entry4.setDescription("Database migration and performance optimization");
         entryRepository.persist(entry4);
 
         // Charlie's entries
@@ -150,6 +154,7 @@ public class TestDataService {
         entry5.setEmployee(charlie);
         entry5.setCategory(training);
         entry5.setTags(Arrays.asList(remote));
+        entry5.setDescription("Attended Quarkus framework training workshop");
         entryRepository.persist(entry5);
 
         Entry entry6 = new Entry();
@@ -158,6 +163,7 @@ public class TestDataService {
         entry6.setEmployee(charlie);
         entry6.setCategory(support);
         entry6.setTags(Arrays.asList(onsite, urgent));
+        entry6.setDescription("Customer support for production deployment issues");
         entryRepository.persist(entry6);
 
         // Diana's entries
@@ -167,6 +173,7 @@ public class TestDataService {
         entry7.setEmployee(diana);
         entry7.setCategory(research);
         entry7.setTags(Arrays.asList(remote, project));
+        entry7.setDescription("Research on microservices architecture patterns");
         entryRepository.persist(entry7);
 
         Entry entry8 = new Entry();
@@ -175,6 +182,7 @@ public class TestDataService {
         entry8.setEmployee(diana);
         entry8.setCategory(development);
         entry8.setTags(Arrays.asList(onsite, feature, project));
+        entry8.setDescription("Developed REST API endpoints for mobile app integration");
         entryRepository.persist(entry8);
 
         // Current ongoing entry (no checkout)
@@ -184,6 +192,7 @@ public class TestDataService {
         entry9.setEmployee(alice);
         entry9.setCategory(development);
         entry9.setTags(Arrays.asList(remote, feature));
+        entry9.setDescription("Working on user dashboard UI improvements");
         entryRepository.persist(entry9);
 
         LOG.info("Created 9 entries with relationships");

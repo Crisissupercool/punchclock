@@ -10,16 +10,18 @@ public class EntryDTO {
     private Long employeeId;
     private Long categoryId;
     private List<Long> tagIds;
+    private String description;
 
     public EntryDTO() {}
 
-    public EntryDTO(Long id, LocalDateTime checkIn, LocalDateTime checkOut, Long employeeId, Long categoryId, List<Long> tagIds) {
+    public EntryDTO(Long id, LocalDateTime checkIn, LocalDateTime checkOut, Long employeeId, Long categoryId, List<Long> tagIds, String description) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.employeeId = employeeId;
         this.categoryId = categoryId;
         this.tagIds = tagIds;
+        this.description = description;
     }
 
     // Getter & Setter
@@ -40,4 +42,7 @@ public class EntryDTO {
 
     public List<Long> getTagIds() { return tagIds; }
     public void setTagIds(List<Long> tagIds) { this.tagIds = tagIds; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }
